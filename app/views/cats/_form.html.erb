@@ -25,6 +25,17 @@
         value="M"
         <%= cat.sex == "M" ? "checked" : "" %>
     >
+    <label>Color</label>
+    <select name="cat[color]" id="cat_color">
+    <option disabled selected value="">Select a Color</option>
+        <% Cat::CAT_COLORS.each do |color| %>
+            <option 
+            <%= cat.color == color ? "SELECTED" : "" %>
+            value="<%= color %>">
+            <%= color.upcase %> 
+            </option>
+        <%end%>
+    </select>
     <label>M</label>
     <input
         type="radio"
@@ -34,4 +45,14 @@
         <%= cat.sex == "F" ? "checked" : "" %>
     >
     <label>F</label>
+    <br>
+
+    <label>Description
+        <textarea name="cat[description]"><%= cat.description%> </textarea>
+    </label>
+
+      <% submit_text = (cat.persisted? ? 'Update' : 'Create') + ' cat!' %>
+    <input type="submit" value="<%= submit_text %>">
+
+
 </form>
